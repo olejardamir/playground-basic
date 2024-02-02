@@ -20,8 +20,8 @@ public class AverageResponseTimer {
 
     public long getAverageRun() {
         long sum = 0;
-        for (String lname : lastNames) {
-            long time = bundleGetter.getLNTimedCall(lname);
+        for (String lastname : lastNames) {
+            long time = bundleGetter.getLNTimedCall(lastname);
             sum += time;
         }
         return sum / lastNames.length;
