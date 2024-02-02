@@ -5,7 +5,7 @@ import ca.uhn.fhir.util.StopWatch;
 
 public class StopwatchTimer implements IClientInterceptor {
 
-    private StopWatch requestStopWatch;
+    private final StopWatch requestStopWatch;
     private long requestTime; // Store the elapsed time here
 
     public StopwatchTimer() {

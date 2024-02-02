@@ -11,8 +11,8 @@ import org.hl7.fhir.r4.model.Patient;
 public class BundleGetter {
 
     private IGenericClient client;
-    private StopwatchTimer stopwatchTimer = new StopwatchTimer();
-    private String url;
+    private final StopwatchTimer stopwatchTimer = new StopwatchTimer();
+    private final String url;
 
 
     public BundleGetter(String url){
@@ -43,6 +43,7 @@ public class BundleGetter {
     }
 
     public void removeCache(){
+        //noinspection unused httpClient is not redundant!
         CloseableHttpClient httpClient = HttpClients.custom()
                 .addInterceptorFirst((HttpRequestInterceptor) (request, context) -> {
                     // Disable caching
@@ -61,10 +62,8 @@ public class BundleGetter {
 
         FhirContext fhirContext = FhirContext.forR4();
         this.client = fhirContext.newRestfulGenericClient(this.url);
+        this.client.registerInterceptor(new LoggingInterceptor(false));
         client.registerInterceptor(stopwatchTimer);
     }
-
-
-
 
 }
