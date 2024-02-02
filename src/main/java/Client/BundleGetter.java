@@ -1,3 +1,6 @@
+package Client;
+
+import Interceptors.StopwatchTimer;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.interceptor.LoggingInterceptor;
@@ -11,7 +14,7 @@ import org.hl7.fhir.r4.model.Patient;
 public class BundleGetter {
 
     private IGenericClient client;
-    private final StopwatchTimer stopwatchTimer = new StopwatchTimer();
+    private StopwatchTimer stopwatchTimer = new StopwatchTimer();
     private final String url;
 
 
@@ -64,6 +67,14 @@ public class BundleGetter {
         this.client = fhirContext.newRestfulGenericClient(this.url);
         this.client.registerInterceptor(new LoggingInterceptor(false));
         client.registerInterceptor(stopwatchTimer);
+    }
+
+    public void setClient(IGenericClient client) {
+        this.client = client;
+    }
+
+    public void setStopwatchTimer(StopwatchTimer stopwatchTimer) {
+        this.stopwatchTimer = stopwatchTimer;
     }
 
 }

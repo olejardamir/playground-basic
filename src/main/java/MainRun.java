@@ -1,3 +1,7 @@
+import Client.BundleGetter;
+import Processors.AverageResponseTimer;
+import Processors.LastNameProcessor;
+
 public class MainRun {
 
     public static void main(String[] theArgs) throws Exception {
@@ -17,6 +21,5 @@ public class MainRun {
         System.out.println(avgRespTime1);
         System.out.println(avgRespTime2);
         System.out.println(avgRespTime3);
-
     }
 }

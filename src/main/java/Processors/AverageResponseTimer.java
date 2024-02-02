@@ -1,3 +1,7 @@
+package Processors;
+
+import Client.BundleGetter;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
