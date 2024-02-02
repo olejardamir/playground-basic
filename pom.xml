@@ -25,6 +25,15 @@
             <version>4.2.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.woodstox/woodstox-core -->
+        <dependency>
+            <groupId>com.fasterxml.woodstox</groupId>
+            <artifactId>woodstox-core</artifactId>
+            <version>6.6.0</version>
+        </dependency>
+
+
+
         <!-- Logging framework -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
