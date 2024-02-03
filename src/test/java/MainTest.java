@@ -36,9 +36,7 @@ public class MainTest {
         assertTrue(avgRespTime2 > 0);
 
         // Second set of runs after removing cache
-        bundleGetter.removeCache();
-        averageResponseTimer = new AverageResponseTimer(lnFile, bundleGetter);
-        long avgRespTime3 = averageResponseTimer.getAverageRun();
+        long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
         // Verify that the cache removal has affected the response time calculation
         assertTrue(avgRespTime3 > 0);
@@ -48,8 +46,8 @@ public class MainTest {
 
 
         // Verify "you should expect to see loop 2 with a shorter average response time than loop 1 and 3"
-//        assertTrue(avgRespTime2 <= avgRespTime1);
-//        assertTrue(avgRespTime2 <= avgRespTime3);
+        assertTrue(avgRespTime2 < avgRespTime1);
+        assertTrue(avgRespTime2 < avgRespTime3);
 
     }
 
