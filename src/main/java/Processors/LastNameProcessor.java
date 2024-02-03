@@ -1,3 +1,5 @@
+package Processors;
+
 import org.apache.commons.io.FileUtils;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.HumanName;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import Client.BundleGetter;
 
 public class LastNameProcessor {
 
@@ -27,16 +30,16 @@ public class LastNameProcessor {
 
 
 
-    private void saveLNamesToFile(File lastNamesFile, List<String> lastNames) throws Exception {
+    public void saveLNamesToFile(File lastNamesFile, List<String> lastNames) throws Exception {
         Path path = lastNamesFile.toPath();
         Files.write(path, lastNames, StandardCharsets.UTF_8);
     }
 
-    private List<String> get20Lastnames(List<String> lastNamesAll) {
+    public List<String> get20Lastnames(List<String> lastNamesAll) {
         return new ArrayList<>(lastNamesAll);
     }
 
-    List<String> getAllLastnames(Bundle response) {
+    public List<String> getAllLastnames(Bundle response) {
         return response.getEntry().stream()
                 .map(entry -> ((Patient) entry.getResource()).getName())
                 .flatMap(List::stream)

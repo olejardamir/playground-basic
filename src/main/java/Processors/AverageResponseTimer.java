@@ -1,3 +1,7 @@
+package Processors;
+
+import Client.BundleGetter;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,6 +26,15 @@ public class AverageResponseTimer {
         long sum = 0;
         for (String lastname : lastNames) {
             long time = bundleGetter.getLNTimedCall(lastname);
+            sum += time;
+        }
+        return sum / lastNames.length;
+    }
+
+    public long getAverageRunNoCache() {
+        long sum = 0;
+        for (String lastname : lastNames) {
+            long time = bundleGetter.getLNTimedCallNoCache(lastname);
             sum += time;
         }
         return sum / lastNames.length;

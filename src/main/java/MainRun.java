@@ -1,3 +1,7 @@
+import Client.BundleGetter;
+import Processors.AverageResponseTimer;
+import Processors.LastNameProcessor;
+
 public class MainRun {
 
     public static void main(String[] theArgs) throws Exception {
@@ -9,14 +13,10 @@ public class MainRun {
         long avgRespTime1 = averageResponseTimer.getAverageRun();
         long avgRespTime2 = averageResponseTimer.getAverageRun();
 
-        bundleGetter.removeCache();
-        averageResponseTimer = new AverageResponseTimer(lnFile, bundleGetter);
-        long avgRespTime3 = averageResponseTimer.getAverageRun();
+        Thread.sleep(10000); //INSERT THE MILLISECONDS DEPENDING ON YOUR DEFINITION OF "ENOUGH TIME".
+        long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
         System.out.println("Average response time for each request: " + avgRespTimeA);
-        System.out.println(avgRespTime1);
-        System.out.println(avgRespTime2);
-        System.out.println(avgRespTime3);
-
+        System.out.println (avgRespTime2<avgRespTime1 && avgRespTime2<avgRespTime3);
     }
 }
