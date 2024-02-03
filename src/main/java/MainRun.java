@@ -1,8 +1,12 @@
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import Client.BundleGetter;
 import Processors.AverageResponseTimer;
 import Processors.LastNameProcessor;
 
 public class MainRun {
+
+    private static final Logger logger = LoggerFactory.getLogger(MainRun.class);
 
     public static void main(String[] theArgs) throws Exception {
         BundleGetter bundleGetter = new BundleGetter("http://hapi.fhir.org/baseR4");
@@ -16,7 +20,7 @@ public class MainRun {
         Thread.sleep(10000); //INSERT THE MILLISECONDS DEPENDING ON YOUR DEFINITION OF "ENOUGH TIME".
         long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
-        System.out.println("Average response time for each request: " + avgRespTimeA);
-        System.out.println (avgRespTime2<avgRespTime1 && avgRespTime2<avgRespTime3);
+        logger.info("Average response time for each request: {}", avgRespTimeA);
+        logger.info("Is average response time for loop 2 shorter than loop 1 and loop 3: {}", (avgRespTime2 < avgRespTime1 && avgRespTime2 < avgRespTime3));
     }
 }

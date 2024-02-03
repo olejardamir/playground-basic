@@ -5,17 +5,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 public class MainTest {
 
 
     private BundleGetter bundleGetter;
-    private String lnFile = "data/last_names.txt";
+    private String lnFile;
 
 
     @BeforeEach
     void setUp() throws Exception {
+        lnFile = "data/last_names.txt";
         bundleGetter = new BundleGetter("http://hapi.fhir.org/baseR4");
     }
 
@@ -35,7 +35,8 @@ public class MainTest {
         assertTrue(avgRespTime1 > 0);
         assertTrue(avgRespTime2 > 0);
 
-        // Second set of runs after removing cache
+        // No cache
+        Thread.sleep(10000); //INSERT THE MILLISECONDS DEPENDING ON YOUR DEFINITION OF "ENOUGH TIME".
         long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
         // Verify that the cache removal has affected the response time calculation
