@@ -5,17 +5,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
 
 public class MainTest {
 
 
     private BundleGetter bundleGetter;
-    private String lnFile = "data/last_names.txt";
+    private String lnFile;
 
 
     @BeforeEach
     void setUp() throws Exception {
+        lnFile = "data/last_names.txt";
         bundleGetter = new BundleGetter("http://hapi.fhir.org/baseR4");
     }
 
@@ -35,21 +35,14 @@ public class MainTest {
         assertTrue(avgRespTime1 > 0);
         assertTrue(avgRespTime2 > 0);
 
-        // Second set of runs after removing cache
-        bundleGetter.removeCache();
-        averageResponseTimer = new AverageResponseTimer(lnFile, bundleGetter);
-        long avgRespTime3 = averageResponseTimer.getAverageRun();
+        // No cache
+        long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
         // Verify that the cache removal has affected the response time calculation
         assertTrue(avgRespTime3 > 0);
         assertNotEquals(avgRespTimeA, avgRespTime3);
         assertNotEquals(avgRespTime1, avgRespTime3);
         assertNotEquals(avgRespTime2, avgRespTime3);
-
-
-        // Verify "you should expect to see loop 2 with a shorter average response time than loop 1 and 3"
-//        assertTrue(avgRespTime2 <= avgRespTime1);
-//        assertTrue(avgRespTime2 <= avgRespTime3);
 
     }
 
