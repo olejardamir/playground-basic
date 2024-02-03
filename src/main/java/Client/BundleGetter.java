@@ -4,10 +4,6 @@ import Interceptors.StopwatchTimer;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.interceptor.LoggingInterceptor;
-import org.apache.http.HttpRequestInterceptor;
-import org.apache.http.HttpResponseInterceptor;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.hl7.fhir.r4.model.Bundle;
 import org.hl7.fhir.r4.model.Patient;
 
@@ -45,36 +41,18 @@ public class BundleGetter {
         return stopwatchTimer.getRequestTime();
     }
 
-    public void removeCache(){
-        //noinspection unused httpClient is not redundant!
-        CloseableHttpClient httpClient = HttpClients.custom()
-                .addInterceptorFirst((HttpRequestInterceptor) (request, context) -> {
-                    // Disable caching
-                    request.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                    request.setHeader("Pragma", "no-cache");
-                    request.setHeader("Expires", "0");
-                })
-                .addInterceptorFirst((HttpResponseInterceptor) (response, context) -> {
-                    // Disable caching for responses
-                    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-                    response.setHeader("Pragma", "no-cache");
-                    response.setHeader("Expires", "0");
-                })
-                .disableCookieManagement()   // no cookies
-                .build();
-
-        FhirContext fhirContext = FhirContext.forR4();
-        this.client = fhirContext.newRestfulGenericClient(this.url);
-        this.client.registerInterceptor(new LoggingInterceptor(false));
-        client.registerInterceptor(stopwatchTimer);
+    public long getLNTimedCallNoCache(String lastName) {
+        this.client
+                .search()
+                .forResource("Patient")
+                .where(Patient.FAMILY.matches().value(lastName))
+                .returnBundle(Bundle.class)
+                .withAdditionalHeader("Cache-Control", "no-cache, no-store, must-revalidate")
+                .withAdditionalHeader("Pragma", "no-cache")
+                .withAdditionalHeader("Expires", "0")
+                .execute();
+        return stopwatchTimer.getRequestTime();
     }
 
-    public void setClient(IGenericClient client) {
-        this.client = client;
-    }
-
-    public void setStopwatchTimer(StopwatchTimer stopwatchTimer) {
-        this.stopwatchTimer = stopwatchTimer;
-    }
 
 }

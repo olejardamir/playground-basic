@@ -13,10 +13,8 @@ public class MainRun {
         long avgRespTime1 = averageResponseTimer.getAverageRun();
         long avgRespTime2 = averageResponseTimer.getAverageRun();
 
-        Thread.sleep(100000); //INSERT THE MILLISECONDS DEPENDING ON YOUR DEFINITION OF "ENOUGH TIME".
-        bundleGetter.removeCache();
-        averageResponseTimer = new AverageResponseTimer(lnFile, bundleGetter);
-        long avgRespTime3 = averageResponseTimer.getAverageRun();
+        Thread.sleep(10000); //INSERT THE MILLISECONDS DEPENDING ON YOUR DEFINITION OF "ENOUGH TIME".
+        long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
         System.out.println("Average response time for each request: " + avgRespTimeA);
         System.out.println (avgRespTime2<avgRespTime1 && avgRespTime2<avgRespTime3);

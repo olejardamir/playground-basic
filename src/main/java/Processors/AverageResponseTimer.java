@@ -31,4 +31,13 @@ public class AverageResponseTimer {
         return sum / lastNames.length;
     }
 
+    public long getAverageRunNoCache() {
+        long sum = 0;
+        for (String lastname : lastNames) {
+            long time = bundleGetter.getLNTimedCallNoCache(lastname);
+            sum += time;
+        }
+        return sum / lastNames.length;
+    }
+
 }
