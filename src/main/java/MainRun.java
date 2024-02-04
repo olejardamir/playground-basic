@@ -4,6 +4,11 @@ import Client.BundleGetter;
 import Processors.AverageResponseTimer;
 import Processors.LastNameProcessor;
 
+
+//NOTE: Caching is documented here: https://hapifhir.io/hapi-fhir/docs/server_jpa/configuration.html
+// Per document, we can disable it globally (on server) or per request
+// Since I do not have access to "http://hapi.fhir.org/baseR4", I can do it only per request.
+
 public class MainRun {
 
     private static final Logger logger = LoggerFactory.getLogger(MainRun.class);

@@ -12,13 +12,13 @@ This project is a skeleton project for using [HAPI FHIR](https://hapifhir.io) to
   
 * [ ] Create your own GitHub project and copy the contents of this repository into your own project (please don't fork this repository)
 
-* [ ] Locate the class `MainRun` and run it. This class runs the same search shown above.
+* [ ] Locate the class `SampleClient` and run it. This class runs the same search shown above.
 
 * [ ] **Please, do not fork this repo.** Create your own private GitHub repository to do your work in.
 
 ### Task 1:
 
-* [ ] Modify `MainRun` so that it prints the first and last name, and birth date of each Patient to the screen
+* [ ] Modify `SampleClient` so that it prints the first and last name, and birth date of each Patient to the screen
 
 * [ ] Sort the output so that the results are ordered by the patient's first name
 
@@ -28,7 +28,7 @@ This project is a skeleton project for using [HAPI FHIR](https://hapifhir.io) to
 
 * [ ] Create a text file containing 20 different last names
 
-* [ ] Modify 'MainRun' so that instead of searching for patients with last name 'SMITH',
+* [ ] Modify 'SampleClient' so that instead of searching for patients with last name 'SMITH',
       it reads in the contents of this file and for each last name queries for patients with that last name
 
 * [ ] Print the average response time for these 20 searches by implementing an IClientInterceptor that uses

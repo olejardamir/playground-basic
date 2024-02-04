@@ -47,9 +47,11 @@ public class BundleGetter {
                 .forResource("Patient")
                 .where(Patient.FAMILY.matches().value(lastName))
                 .returnBundle(Bundle.class)
-                .withAdditionalHeader("Cache-Control", "no-cache, no-store, must-revalidate")
-                .withAdditionalHeader("Pragma", "no-cache")
-                .withAdditionalHeader("Expires", "0")
+                .withAdditionalHeader("Cache-Control", "no-cache")
+//Use below instead, if necessary!
+//                .withAdditionalHeader("Cache-Control", "no-cache, no-store, must-revalidate")
+//                .withAdditionalHeader("Pragma", "no-cache")
+//                .withAdditionalHeader("Expires", "0")
                 .execute();
         return stopwatchTimer.getRequestTime();
     }
