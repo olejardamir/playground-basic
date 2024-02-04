@@ -26,12 +26,10 @@ public class MainTest {
         assertNotNull(averageResponseTimer);
 
         // First set of runs
-        long avgRespTimeA = averageResponseTimer.getAverageRun();
         long avgRespTime1 = averageResponseTimer.getAverageRun();
         long avgRespTime2 = averageResponseTimer.getAverageRun();
 
         // Verify that the average response times are calculated correctly
-        assertTrue(avgRespTimeA > 0);
         assertTrue(avgRespTime1 > 0);
         assertTrue(avgRespTime2 > 0);
 
@@ -40,7 +38,6 @@ public class MainTest {
 
         // Verify that the cache removal has affected the response time calculation
         assertTrue(avgRespTime3 > 0);
-        assertNotEquals(avgRespTimeA, avgRespTime3);
         assertNotEquals(avgRespTime1, avgRespTime3);
         assertNotEquals(avgRespTime2, avgRespTime3);
 

@@ -9,6 +9,8 @@ import Processors.LastNameProcessor;
 // Per document, we can disable it globally (on server) or per request
 // Since I do not have access to "http://hapi.fhir.org/baseR4", I can do it only per request.
 
+//If you want a wider variety of the lastnames (less repetition) uncomment LastNameProcessor.java line "Collections.shuffle(lastNamesAll);"
+
 public class MainRun {
 
     private static final Logger logger = LoggerFactory.getLogger(MainRun.class);
@@ -22,8 +24,6 @@ public class MainRun {
             new LastNameProcessor(lnFile, bundleGetter);
             AverageResponseTimer averageResponseTimer = new AverageResponseTimer(lnFile, bundleGetter);
             logger.info("Calculating average process time...");
-            long avgRespTimeA = averageResponseTimer.getAverageRun();
-            logger.info("Calculating average process time for loop 1");
             long avgRespTime1 = averageResponseTimer.getAverageRun();
             logger.info("Calculating average process time for loop 2");
             long avgRespTime2 = averageResponseTimer.getAverageRun();
@@ -34,7 +34,7 @@ public class MainRun {
             logger.info("Calculating average process time for loop 3");
             long avgRespTime3 = averageResponseTimer.getAverageRunNoCache();
 
-            logger.info("Average response time for each request: {}", avgRespTimeA);
+            logger.info("Average response time for each request: {}", avgRespTime1);
             boolean shorter = (avgRespTime2 < avgRespTime1 && avgRespTime2 < avgRespTime3);
             logger.info("Average response time is shorter for loop 2 than for loop 1 and loop 3: {}", (avgRespTime2 < avgRespTime1 && avgRespTime2 < avgRespTime3));
             if (!shorter) {

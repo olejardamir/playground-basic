@@ -23,7 +23,7 @@ public class LastNameProcessor {
         if(lastNamesFile.exists()) FileUtils.forceDelete(lastNamesFile); //we need a fresh, new file
         Bundle response = bundleGetter.getBundle();
         List<String> lastNamesAll = getAllLastnames(response);
-        Collections.shuffle(lastNamesAll); //we need them unsorted
+       // Collections.shuffle(lastNamesAll); //we may need them unsorted
         List<String> lastNames = get20Lastnames(lastNamesAll);
         saveLNamesToFile(lastNamesFile, lastNames);
     }
