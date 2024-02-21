@@ -1,4 +1,4 @@
-#### Was asked to do a coding assessment, never heard back from the company in question (Smile, Digital Health), so I guess they do not need this anymore, and therefore I am making it public.
+#### Was asked to do a coding assessment, never heard back from the company in question (Smile, Digital Health), so I guess they do not need this anymore, and therefore I am making it public. Please feel free to use this code and waste their time, as much as they have wasted mine.
 
 # HAPI FHIR Playground: 
 
