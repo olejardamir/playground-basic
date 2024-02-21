@@ -1,3 +1,5 @@
+#### Was asked to do a coding assessment, never heard back from the company in question, so I guess they do not need this anymore.
+
 # HAPI FHIR Playground: 
 
 This project is a skeleton project for using [HAPI FHIR](https://hapifhir.io) to access a public [FHIR](http://hl7.org/fhir/) server hosted at [http://hapi.fhir.org/baseR4](http://hapi.fhir.org/baseR4).
